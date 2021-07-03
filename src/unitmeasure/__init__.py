@@ -1,2 +1,2 @@
 
-from unitmeasure.unit import Unit
+from unitmeasure.unit import *
