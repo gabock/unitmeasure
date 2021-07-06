@@ -11,12 +11,12 @@ class UnitConverter(object):
     define the conversion to and from a value in terms of a unit.
     """
 
-    def baseUnitValue(self, fromValue):
+    def baseUnitValue(self, value):
         """This method takes a value in terms of a unit and returns the corresponding value in terms of the base unit.
         """
-        return fromValue
+        return value
 
-    def value(self, fromBasUnitValue):
+    def value(self, baseUnitValue):
         """This method takes in a value in terms of the base unit and returns the equialent value in terms of the unit.
         """
-        return fromBasUnitValue
+        return baseUnitValue
