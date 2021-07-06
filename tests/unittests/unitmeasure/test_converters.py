@@ -45,3 +45,30 @@ class TestCaseLinearConverter(object):
     def test_equals(self, converter1, converter2, expected):
         assert (converter1 == converter2) == expected
         
+class TestCaseReciprocalConverter(object):
+
+    @pytest.mark.parametrize("value, recip, expected", [
+        (2, 4, 2),
+        (5, 5, 1),
+        (4, 1, 1/4),
+    ])
+    def test_base_unit(self, value, recip, expected):
+        unit_converter = unitmeasure.converters.UnitConverterReciprocal(recip)
+        assert unit_converter.baseUnitValue(value) == expected
+
+    @pytest.mark.parametrize("base_value, recip, expected", [
+        (2, 10, 5),
+        (5, 15, 3),
+        (5, 1, 1/5),
+    ])
+    def test_value(self, base_value, recip, expected):
+        unit_converter = unitmeasure.converters.UnitConverterReciprocal(recip)
+        assert unit_converter.value(base_value) == expected
+
+    @pytest.mark.parametrize("converter1, converter2, expected", [
+        (unitmeasure.converters.UnitConverterReciprocal(10), unitmeasure.converters.UnitConverterReciprocal(10), True),
+        (unitmeasure.converters.UnitConverterReciprocal(10), unitmeasure.converters.UnitConverterReciprocal(5), False),
+        (unitmeasure.converters.UnitConverterReciprocal(10), 10, False)
+    ])
+    def test_equals(self, converter1, converter2, expected):
+        assert (converter1 == converter2) == expected
