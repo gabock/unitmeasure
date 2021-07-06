@@ -7,7 +7,7 @@ class Dimension(unit.Unit):
         super().__init__(symbol)
 
     @classmethod
-    def baseUnit(self):
+    def baseUnit(cls):
         raise NotImplementedError("you must override overide baseUnit in your class to define itsbase unit")
 
     def __eq__(self, other):
