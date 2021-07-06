@@ -13,3 +13,14 @@ def test_unit_symbol():
 ])
 def test_is_equal(unit1, unit2, expected):
     assert (unit1 == unit2) == expected
+
+class TestCaseUnitAcceleration(object):
+
+    @pytest.mark.parametrize("prop, symbol", [
+        ("metersPerSecondSquared", "m/s²"),
+        ("gravity", "g"),
+
+    ])
+    def test_symbol(self, prop, symbol):
+        accel = getattr(unitmeasure.UnitAcceleration, prop)
+        assert accel.symbol == symbol

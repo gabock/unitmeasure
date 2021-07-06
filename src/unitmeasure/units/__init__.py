@@ -1,0 +1,1 @@
+from unitmeasure.units.acceleration import UnitAcceleration
