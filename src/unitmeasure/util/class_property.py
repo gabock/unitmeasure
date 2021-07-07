@@ -1,5 +1,6 @@
 import inspect
 
+
 class _ClassPropertyDescriptor(object):
 
     def __init__(self, fget, fset=None):
@@ -26,6 +27,7 @@ class _ClassPropertyDescriptor(object):
             func = classmethod(func)
         self.fset = func
         return self
+
 
 def classproperty(func):
     if not isinstance(func, (classmethod, staticmethod)):
