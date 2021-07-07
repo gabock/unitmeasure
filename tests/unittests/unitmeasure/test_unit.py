@@ -61,3 +61,18 @@ class TestCaseUnitArea(object):
     def test_symbol(self, prop, symbol):
         accel = getattr(unitmeasure.UnitArea, prop)
         assert accel.symbol == symbol
+
+
+class TestCaseUnitConcentrationMass(object):
+
+    @pytest.mark.parametrize("prop, symbol", [
+        ("gramsPerLiter", "g/L"),
+        ("milligramsPerDeciliter", "mg/dL"),
+    ])
+    def test_symbol(self, prop, symbol):
+        accel = getattr(unitmeasure.UnitConcentrationMass, prop)
+        assert accel.symbol == symbol
+
+    def test_millimolesPerLiter_symbol(self):
+        assert unitmeasure.UnitConcentrationMass.millimolesPerLiter(
+            2).symbol == "mmol/L"
