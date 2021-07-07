@@ -3,6 +3,7 @@ from unitmeasure import dimension
 
 from unitmeasure.util import classproperty
 
+
 class UnitAcceleration(dimension.Dimension):
 
     class Symbol(object):
@@ -18,7 +19,8 @@ class UnitAcceleration(dimension.Dimension):
 
     @classproperty
     def metersPerSecondSquared(cls):
-        return UnitAcceleration(cls.Symbol.metersPerSecondSquared, cls.Coefficient.metersPerSecondSquared)
+        return UnitAcceleration(cls.Symbol.metersPerSecondSquared,
+                                cls.Coefficient.metersPerSecondSquared)
 
     @classproperty
     def gravity(cls):

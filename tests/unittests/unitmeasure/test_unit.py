@@ -24,3 +24,17 @@ class TestCaseUnitAcceleration(object):
     def test_symbol(self, prop, symbol):
         accel = getattr(unitmeasure.UnitAcceleration, prop)
         assert accel.symbol == symbol
+
+class TestCaseUnitAngle(object):
+
+    @pytest.mark.parametrize("prop, symbol", [
+        ("degrees", "°"),
+        ("arcMinutes", "ʹ"),
+        ("arcSeconds", "ʹʹ"),
+        ("radians", "rad"),
+        ("gradians", "grad"),
+        ("revolutions", "rev"),
+    ])
+    def test_symbol(self, prop, symbol):
+        accel = getattr(unitmeasure.UnitAngle, prop)
+        assert accel.symbol == symbol

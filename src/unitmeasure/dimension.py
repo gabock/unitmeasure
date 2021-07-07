@@ -1,5 +1,6 @@
 from unitmeasure import unit
 
+
 class Dimension(unit.Unit):
 
     def __init__(self, symbol, converter):
@@ -8,7 +9,9 @@ class Dimension(unit.Unit):
 
     @classmethod
     def baseUnit(cls):
-        raise NotImplementedError("you must override overide baseUnit in your class to define itsbase unit")
+        raise NotImplementedError(
+            "you must override overide baseUnit in your class to define itsbase unit"
+        )
 
     def __eq__(self, other):
         if not isinstance(other, Dimension):
