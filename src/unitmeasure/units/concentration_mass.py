@@ -38,3 +38,9 @@ class UnitConcentrationMass(dimension.Dimension):
     @classmethod
     def baseUnit(cls):
         return cls.gramsPerLiter
+
+    def __eq__(self, other):
+        if not isinstance(other, UnitConcentrationMass):
+            return False
+
+        return super().__eq__(other)
