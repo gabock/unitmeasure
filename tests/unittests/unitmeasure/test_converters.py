@@ -4,6 +4,7 @@ import unitmeasure
 
 
 class TestCaseBaseConverter(object):
+
     def test_unit_converter_base(self):
         unit_converter = unitmeasure.converters.UnitConverter()
         # While this test is very simple, it is here to ensure that these
@@ -20,7 +21,8 @@ class TestCaseLinearConverter(object):
         (4, 1, 6, 10),
     ])
     def test_base_unit(self, value, coef, constant, expected):
-        unit_converter = unitmeasure.converters.UnitConverterLinear(coef, constant)
+        unit_converter = unitmeasure.converters.UnitConverterLinear(
+            coef, constant)
         assert unit_converter.baseUnitValue(value) == expected
 
     @pytest.mark.parametrize("base_value, coef, constant, expected", [
@@ -29,28 +31,33 @@ class TestCaseLinearConverter(object):
         (10, 1, 5, 5),
     ])
     def test_value(self, base_value, coef, constant, expected):
-        unit_converter = unitmeasure.converters.UnitConverterLinear(coef, constant)
+        unit_converter = unitmeasure.converters.UnitConverterLinear(
+            coef, constant)
         assert unit_converter.value(base_value) == expected
 
     def test_base_constant(self):
         unit_converter = unitmeasure.converters.UnitConverterLinear(10)
         assert unit_converter.constant == 0
 
-    @pytest.mark.parametrize("converter1, converter2, expected", [
-        (unitmeasure.converters.UnitConverterLinear(10), unitmeasure.converters.UnitConverterLinear(10), True),
-        (unitmeasure.converters.UnitConverterLinear(10), unitmeasure.converters.UnitConverterLinear(10, 5), False),
-        (unitmeasure.converters.UnitConverterLinear(10, 5), unitmeasure.converters.UnitConverterLinear(10, 5), True),
-        (unitmeasure.converters.UnitConverterLinear(10), 10, False)
-    ])
+    @pytest.mark.parametrize(
+        "converter1, converter2, expected",
+        [(unitmeasure.converters.UnitConverterLinear(10),
+          unitmeasure.converters.UnitConverterLinear(10), True),
+         (unitmeasure.converters.UnitConverterLinear(10),
+          unitmeasure.converters.UnitConverterLinear(10, 5), False),
+         (unitmeasure.converters.UnitConverterLinear(
+             10, 5), unitmeasure.converters.UnitConverterLinear(10, 5), True),
+         (unitmeasure.converters.UnitConverterLinear(10), 10, False)])
     def test_equals(self, converter1, converter2, expected):
         assert (converter1 == converter2) == expected
-        
+
+
 class TestCaseReciprocalConverter(object):
 
     @pytest.mark.parametrize("value, recip, expected", [
         (2, 4, 2),
         (5, 5, 1),
-        (4, 1, 1/4),
+        (4, 1, 1 / 4),
     ])
     def test_base_unit(self, value, recip, expected):
         unit_converter = unitmeasure.converters.UnitConverterReciprocal(recip)
@@ -59,16 +66,18 @@ class TestCaseReciprocalConverter(object):
     @pytest.mark.parametrize("base_value, recip, expected", [
         (2, 10, 5),
         (5, 15, 3),
-        (5, 1, 1/5),
+        (5, 1, 1 / 5),
     ])
     def test_value(self, base_value, recip, expected):
         unit_converter = unitmeasure.converters.UnitConverterReciprocal(recip)
         assert unit_converter.value(base_value) == expected
 
-    @pytest.mark.parametrize("converter1, converter2, expected", [
-        (unitmeasure.converters.UnitConverterReciprocal(10), unitmeasure.converters.UnitConverterReciprocal(10), True),
-        (unitmeasure.converters.UnitConverterReciprocal(10), unitmeasure.converters.UnitConverterReciprocal(5), False),
-        (unitmeasure.converters.UnitConverterReciprocal(10), 10, False)
-    ])
+    @pytest.mark.parametrize(
+        "converter1, converter2, expected",
+        [(unitmeasure.converters.UnitConverterReciprocal(10),
+          unitmeasure.converters.UnitConverterReciprocal(10), True),
+         (unitmeasure.converters.UnitConverterReciprocal(10),
+          unitmeasure.converters.UnitConverterReciprocal(5), False),
+         (unitmeasure.converters.UnitConverterReciprocal(10), 10, False)])
     def test_equals(self, converter1, converter2, expected):
         assert (converter1 == converter2) == expected
