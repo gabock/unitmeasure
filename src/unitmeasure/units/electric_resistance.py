@@ -50,3 +50,9 @@ class UnitElectricResistance(dimension.Dimension):
     @classmethod
     def baseUnit(cls):
         return cls.ohms
+
+    def __eq__(self, other):
+        if not isinstance(other, UnitElectricResistance):
+            return False
+
+        return super().__eq__(other)
