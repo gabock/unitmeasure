@@ -9,3 +9,4 @@ from unitmeasure.units.electric_potential_difference import UnitElectricPotentia
 from unitmeasure.units.electric_resistance import UnitElectricResistance
 from unitmeasure.units.energy import UnitEnergy
 from unitmeasure.units.frequency import UnitFrequency
+from unitmeasure.units.fuel_efficiency import UnitFuelEfficiency
