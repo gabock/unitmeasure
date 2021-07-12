@@ -141,3 +141,26 @@ class TestCaseUnitEnergy(object):
     def test_symbol(self, prop, symbol):
         accel = getattr(unitmeasure.UnitEnergy, prop)
         assert accel.symbol == symbol
+
+
+class TestCaseUnitFrequency(object):
+
+    @pytest.mark.parametrize("prop, symbol", [
+        ("terahertz", "THz"),
+        ("gigahertz", "GHz"),
+        ("megahertz", "MHz"),
+        ("kilohertz", "kHz"),
+        ("hertz", "Hz"),
+        (
+            "millihertz",
+            "mHz",
+        ),
+        (
+            "microhertz",
+            "µHz",
+        ),
+        ("nanohertz", "nHz"),
+    ])
+    def test_symbol(self, prop, symbol):
+        accel = getattr(unitmeasure.UnitFrequency, prop)
+        assert accel.symbol == symbol

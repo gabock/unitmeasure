@@ -8,3 +8,4 @@ from unitmeasure.units.electric_charge import UnitElectricCharge
 from unitmeasure.units.electric_potential_difference import UnitElectricPotentialDifference
 from unitmeasure.units.electric_resistance import UnitElectricResistance
 from unitmeasure.units.energy import UnitEnergy
+from unitmeasure.units.frequency import UnitFrequency
