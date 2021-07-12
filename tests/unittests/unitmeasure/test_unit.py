@@ -84,3 +84,12 @@ class TestCaseUnitDispersion(object):
     def test_symbol(self, prop, symbol):
         accel = getattr(unitmeasure.UnitDispersion, prop)
         assert accel.symbol == symbol
+
+
+class TestCaseUnitDuration(object):
+
+    @pytest.mark.parametrize("prop, symbol", [("seconds", "s"),
+                                              ("minutes", "m"), ("hours", "h")])
+    def test_symbol(self, prop, symbol):
+        accel = getattr(unitmeasure.UnitDuration, prop)
+        assert accel.symbol == symbol
