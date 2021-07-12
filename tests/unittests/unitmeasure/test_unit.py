@@ -118,3 +118,14 @@ class TestCaseUnitElectricPotentialDifference(object):
     def test_symbol(self, prop, symbol):
         accel = getattr(unitmeasure.UnitElectricPotentialDifference, prop)
         assert accel.symbol == symbol
+
+
+class TestCaseUnitElectricResistance(object):
+
+    @pytest.mark.parametrize("prop, symbol", [("megaohms", "MΩ"),
+                                              ("kiloohms", "kΩ"), ("ohms", "Ω"),
+                                              ("milliohms", "mΩ"),
+                                              ("microohms", "µΩ")])
+    def test_symbol(self, prop, symbol):
+        accel = getattr(unitmeasure.UnitElectricResistance, prop)
+        assert accel.symbol == symbol
