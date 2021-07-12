@@ -164,3 +164,15 @@ class TestCaseUnitFrequency(object):
     def test_symbol(self, prop, symbol):
         accel = getattr(unitmeasure.UnitFrequency, prop)
         assert accel.symbol == symbol
+
+
+class TestCaseUnitFuelEfficiency(object):
+
+    @pytest.mark.parametrize("prop, symbol", [
+        ("litersPer100Kilometers", "L/100km"),
+        ("milesPerImperialGallon", "mpg"),
+        ("milesPerGallon", "mpg"),
+    ])
+    def test_symbol(self, prop, symbol):
+        accel = getattr(unitmeasure.UnitFuelEfficiency, prop)
+        assert accel.symbol == symbol
