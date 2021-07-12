@@ -129,3 +129,15 @@ class TestCaseUnitElectricResistance(object):
     def test_symbol(self, prop, symbol):
         accel = getattr(unitmeasure.UnitElectricResistance, prop)
         assert accel.symbol == symbol
+
+
+class TestCaseUnitEnergy(object):
+
+    @pytest.mark.parametrize("prop, symbol", [("kilojoules", "kJ"),
+                                              ("joules", "J"),
+                                              ("kilocalories", "kCal"),
+                                              ("calories", "cal"),
+                                              ("kilowattHours", "kWh")])
+    def test_symbol(self, prop, symbol):
+        accel = getattr(unitmeasure.UnitEnergy, prop)
+        assert accel.symbol == symbol
