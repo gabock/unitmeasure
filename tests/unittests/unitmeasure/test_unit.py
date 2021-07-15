@@ -208,6 +208,7 @@ class TestCaseUnitLength(object):
         accel = getattr(unitmeasure.UnitLength, prop)
         assert accel.symbol == symbol
 
+
 class TestCaseUnitIlluminance(object):
 
     @pytest.mark.parametrize("prop, symbol", [
@@ -215,4 +216,29 @@ class TestCaseUnitIlluminance(object):
     ])
     def test_symbol(self, prop, symbol):
         accel = getattr(unitmeasure.UnitIlluminance, prop)
+        assert accel.symbol == symbol
+
+
+class TestCaseUnitMass(object):
+
+    @pytest.mark.parametrize("prop, symbol", [
+        ("kilograms", "kg"),
+        ("grams", "g"),
+        ("decigrams", "dg"),
+        ("centigrams", "cg"),
+        ("milligrams", "mg"),
+        ("micrograms", "µg"),
+        ("nanograms", "ng"),
+        ("picograms", "pg"),
+        ("ounces", "oz"),
+        ("pounds", "lb"),
+        ("stones", "st"),
+        ("metricTons", "t"),
+        ("shortTons", "ton"),
+        ("carats", "ct"),
+        ("ouncesTroy", "oz t"),
+        ("slugs", "slug"),
+    ])
+    def test_symbol(self, prop, symbol):
+        accel = getattr(unitmeasure.UnitMass, prop)
         assert accel.symbol == symbol
