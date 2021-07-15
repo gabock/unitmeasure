@@ -207,3 +207,12 @@ class TestCaseUnitLength(object):
     def test_symbol(self, prop, symbol):
         accel = getattr(unitmeasure.UnitLength, prop)
         assert accel.symbol == symbol
+
+class TestCaseUnitIlluminance(object):
+
+    @pytest.mark.parametrize("prop, symbol", [
+        ("lux", "lx"),
+    ])
+    def test_symbol(self, prop, symbol):
+        accel = getattr(unitmeasure.UnitIlluminance, prop)
+        assert accel.symbol == symbol
