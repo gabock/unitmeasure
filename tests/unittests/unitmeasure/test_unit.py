@@ -176,3 +176,34 @@ class TestCaseUnitFuelEfficiency(object):
     def test_symbol(self, prop, symbol):
         accel = getattr(unitmeasure.UnitFuelEfficiency, prop)
         assert accel.symbol == symbol
+
+
+class TestCaseUnitLength(object):
+
+    @pytest.mark.parametrize("prop, symbol", [
+        ("megameters", "Mm"),
+        ("kilometers", "km"),
+        ("hectometers", "hm"),
+        ("decameters", "dam"),
+        ("meters", "m"),
+        ("decimeters", "dm"),
+        ("centimeters", "cm"),
+        ("millimeters", "mm"),
+        ("micrometers", "µm"),
+        ("nanometers", "nm"),
+        ("picometers", "pm"),
+        ("inches", "in"),
+        ("feet", "ft"),
+        ("yards", "yd"),
+        ("miles", "mi"),
+        ("scandinavianMiles", "smi"),
+        ("lightyears", "ly"),
+        ("nauticalMiles", "NM"),
+        ("fathoms", "ftm"),
+        ("furlongs", "fur"),
+        ("astronomicalUnits", "ua"),
+        ("parsecs", "pc"),
+    ])
+    def test_symbol(self, prop, symbol):
+        accel = getattr(unitmeasure.UnitLength, prop)
+        assert accel.symbol == symbol
