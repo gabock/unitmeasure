@@ -262,3 +262,22 @@ class TestCaseUnitPower(object):
     def test_symbol(self, prop, symbol):
         accel = getattr(unitmeasure.UnitPower, prop)
         assert accel.symbol == symbol
+
+
+class TestCaseUnitPressure(object):
+
+    @pytest.mark.parametrize("prop, symbol", [
+        ("newtonsPerMetersSquared", "N/m²"),
+        ("gigapascals", "GPa"),
+        ("megapascals", "MPa"),
+        ("kilopascals", "kPa"),
+        ("hectopascals", "hPa"),
+        ("inchesOfMercury", "inHg"),
+        ("bars", "bar"),
+        ("millibars", "mbar"),
+        ("millimetersOfMercury", "mmHg"),
+        ("poundsForcePerSquareInch", "psi"),
+    ])
+    def test_symbol(self, prop, symbol):
+        accel = getattr(unitmeasure.UnitPressure, prop)
+        assert accel.symbol == symbol
