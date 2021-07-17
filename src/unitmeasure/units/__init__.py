@@ -14,3 +14,4 @@ from unitmeasure.units.illuminance import UnitIlluminance
 from unitmeasure.units.length import UnitLength
 from unitmeasure.units.mass import UnitMass
 from unitmeasure.units.power import UnitPower
+from unitmeasure.units.pressure import UnitPressure
