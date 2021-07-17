@@ -13,3 +13,4 @@ from unitmeasure.units.fuel_efficiency import UnitFuelEfficiency
 from unitmeasure.units.illuminance import UnitIlluminance
 from unitmeasure.units.length import UnitLength
 from unitmeasure.units.mass import UnitMass
+from unitmeasure.units.power import UnitPower
