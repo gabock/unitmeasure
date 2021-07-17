@@ -306,3 +306,43 @@ class TestCaseUnitTemperature(object):
     def test_symbol(self, prop, symbol):
         accel = getattr(unitmeasure.UnitTemperature, prop)
         assert accel.symbol == symbol
+
+
+class TestCaseUnitVolume(object):
+
+    @pytest.mark.parametrize("prop, symbol", [
+        ("megaliters", "ML"),
+        ("kiloliters", "kL"),
+        ("liters", "L"),
+        ("deciliters", "dl"),
+        ("centiliters", "cL"),
+        ("milliliters", "mL"),
+        ("cubicKilometers", "km³"),
+        ("cubicMeters", "m³"),
+        ("cubicDecimeters", "dm³"),
+        ("cubicCentimeters", "cm³"),
+        ("cubicMillimeters", "mm³"),
+        ("cubicInches", "in³"),
+        ("cubicFeet", "ft³"),
+        ("cubicYards", "yd³"),
+        ("cubicMiles", "mi³"),
+        ("acreFeet", "af"),
+        ("bushels", "bsh"),
+        ("teaspoons", "tsp"),
+        ("tablespoons", "tbsp"),
+        ("fluidOunces", "fl oz"),
+        ("cups", "cup"),
+        ("pints", "pt"),
+        ("quarts", "qt"),
+        ("gallons", "gal"),
+        ("imperialTeaspoons", "tsp Imperial"),
+        ("imperialTablespoons", "tbsp Imperial"),
+        ("imperialFluidOunces", "fl oz Imperial"),
+        ("imperialPints", "pt Imperial"),
+        ("imperialQuarts", "qt Imperial"),
+        ("imperialGallons", "gal Imperial"),
+        ("metricCups", "metric cup Imperial"),
+    ])
+    def test_symbol(self, prop, symbol):
+        accel = getattr(unitmeasure.UnitVolume, prop)
+        assert accel.symbol == symbol

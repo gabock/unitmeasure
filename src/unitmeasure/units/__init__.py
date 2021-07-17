@@ -17,3 +17,4 @@ from unitmeasure.units.power import UnitPower
 from unitmeasure.units.pressure import UnitPressure
 from unitmeasure.units.speed import UnitSpeed
 from unitmeasure.units.temperature import UnitTemperature
+from unitmeasure.units.volume import UnitVolume
