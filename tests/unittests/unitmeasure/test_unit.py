@@ -242,3 +242,23 @@ class TestCaseUnitMass(object):
     def test_symbol(self, prop, symbol):
         accel = getattr(unitmeasure.UnitMass, prop)
         assert accel.symbol == symbol
+
+
+class TestCaseUnitPower(object):
+
+    @pytest.mark.parametrize("prop, symbol", [
+        ("terawatts", "TW"),
+        ("gigawatts", "GW"),
+        ("megawatts", "MW"),
+        ("kilowatts", "kW"),
+        ("watts", "W"),
+        ("milliwatts", "mW"),
+        ("microwatts", "µW"),
+        ("nanowatts", "nW"),
+        ("picowatts", "pW"),
+        ("femtowatts", "fW"),
+        ("horsepower", "hp"),
+    ])
+    def test_symbol(self, prop, symbol):
+        accel = getattr(unitmeasure.UnitPower, prop)
+        assert accel.symbol == symbol
