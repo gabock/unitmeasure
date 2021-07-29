@@ -15,3 +15,11 @@ class Measurement(object):
 
     def __delattr__(self, *args):
         raise TypeError("'Measurement' object doesn't support item deletion")
+
+    @property
+    def description(self):
+        return f"{self.value} {self.unit.symbol}"
+
+    @property
+    def debugDescription(self):
+        return f"{self.value} {self.unit.symbol}"
