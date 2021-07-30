@@ -63,6 +63,9 @@ class Measurement(object):
                 return lhs_value_in_base == rhs_value_in_base
         return False
 
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
     def __repr__(self):
         return self.debugDescription
 
