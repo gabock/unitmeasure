@@ -39,9 +39,33 @@ def test_debug_description():
                              unit=unitmeasure.UnitArea.squareMeters), False),
     (unitmeasure.Measurement(value=60, unit=unitmeasure.UnitDuration.seconds),
      unitmeasure.Measurement(value=1, unit=unitmeasure.Unit("blah")), False),
+    (unitmeasure.Measurement(value=60, unit=unitmeasure.Unit("blah")),
+     unitmeasure.Measurement(value=60, unit=unitmeasure.Unit("blah")), True),
 ])
 def test_equal(lhs, rhs, expected):
     assert (lhs == rhs) == expected
+
+
+@pytest.mark.parametrize("lhs, rhs, expected", [
+    (unitmeasure.Measurement(value=60, unit=unitmeasure.UnitDuration.seconds),
+     unitmeasure.Measurement(value=60,
+                             unit=unitmeasure.UnitDuration.seconds), False),
+    (unitmeasure.Measurement(value=60, unit=unitmeasure.UnitDuration.seconds),
+     unitmeasure.Measurement(value=1,
+                             unit=unitmeasure.UnitDuration.minutes), False),
+    (unitmeasure.Measurement(value=60, unit=unitmeasure.UnitDuration.seconds),
+     unitmeasure.Measurement(value=45,
+                             unit=unitmeasure.UnitDuration.seconds), True),
+    (unitmeasure.Measurement(value=60, unit=unitmeasure.UnitDuration.seconds),
+     unitmeasure.Measurement(value=1,
+                             unit=unitmeasure.UnitArea.squareMeters), True),
+    (unitmeasure.Measurement(value=60, unit=unitmeasure.UnitDuration.seconds),
+     unitmeasure.Measurement(value=1, unit=unitmeasure.Unit("blah")), True),
+    (unitmeasure.Measurement(value=60, unit=unitmeasure.Unit("blah")),
+     unitmeasure.Measurement(value=60, unit=unitmeasure.Unit("blah")), False),
+])
+def test_not_equal(lhs, rhs, expected):
+    assert (lhs != rhs) == expected
 
 
 def test_converted_not_dimension():
