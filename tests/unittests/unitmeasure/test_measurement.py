@@ -68,6 +68,105 @@ def test_not_equal(lhs, rhs, expected):
     assert (lhs != rhs) == expected
 
 
+@pytest.mark.parametrize("lhs, rhs, expected", [
+    (unitmeasure.Measurement(value=45, unit=unitmeasure.UnitDuration.seconds),
+     unitmeasure.Measurement(value=60,
+                             unit=unitmeasure.UnitDuration.seconds), True),
+    (unitmeasure.Measurement(value=30, unit=unitmeasure.UnitDuration.seconds),
+     unitmeasure.Measurement(value=1,
+                             unit=unitmeasure.UnitDuration.minutes), True),
+    (unitmeasure.Measurement(value=60, unit=unitmeasure.UnitDuration.seconds),
+     unitmeasure.Measurement(value=45,
+                             unit=unitmeasure.UnitDuration.seconds), False),
+    (unitmeasure.Measurement(value=60, unit=unitmeasure.Unit("blah")),
+     unitmeasure.Measurement(value=60, unit=unitmeasure.Unit("blah")), False),
+])
+def test_lt(lhs, rhs, expected):
+    assert (lhs < rhs) == expected
+
+@pytest.mark.parametrize("lhs, rhs, expected", [
+    (unitmeasure.Measurement(value=45, unit=unitmeasure.UnitDuration.seconds),
+     unitmeasure.Measurement(value=60,
+                             unit=unitmeasure.UnitDuration.seconds), True),
+    (unitmeasure.Measurement(value=30, unit=unitmeasure.UnitDuration.seconds),
+     unitmeasure.Measurement(value=1,
+                             unit=unitmeasure.UnitDuration.minutes), True),
+    (unitmeasure.Measurement(value=60, unit=unitmeasure.UnitDuration.seconds),
+     unitmeasure.Measurement(value=45,
+                             unit=unitmeasure.UnitDuration.seconds), False),
+    (unitmeasure.Measurement(value=60, unit=unitmeasure.Unit("blah")),
+     unitmeasure.Measurement(value=60, unit=unitmeasure.Unit("blah")), True),
+])
+def test_le(lhs, rhs, expected):
+    assert (lhs <= rhs) == expected
+
+
+
+@pytest.mark.parametrize("lhs, rhs, expected", [
+    (unitmeasure.Measurement(value=45, unit=unitmeasure.UnitDuration.seconds),
+     unitmeasure.Measurement(value=60,
+                             unit=unitmeasure.UnitDuration.seconds), False),
+    (unitmeasure.Measurement(value=30, unit=unitmeasure.UnitDuration.seconds),
+     unitmeasure.Measurement(value=1,
+                             unit=unitmeasure.UnitDuration.minutes), False),
+    (unitmeasure.Measurement(value=60, unit=unitmeasure.UnitDuration.seconds),
+     unitmeasure.Measurement(value=45,
+                             unit=unitmeasure.UnitDuration.seconds), True),
+    (unitmeasure.Measurement(value=60, unit=unitmeasure.Unit("blah")),
+     unitmeasure.Measurement(value=60, unit=unitmeasure.Unit("blah")), False),
+])
+def test_gt(lhs, rhs, expected):
+    assert (lhs > rhs) == expected
+
+@pytest.mark.parametrize("lhs, rhs, expected", [
+    (unitmeasure.Measurement(value=45, unit=unitmeasure.UnitDuration.seconds),
+     unitmeasure.Measurement(value=60,
+                             unit=unitmeasure.UnitDuration.seconds), False),
+    (unitmeasure.Measurement(value=120, unit=unitmeasure.UnitDuration.seconds),
+     unitmeasure.Measurement(value=1,
+                             unit=unitmeasure.UnitDuration.minutes), True),
+    (unitmeasure.Measurement(value=60, unit=unitmeasure.UnitDuration.seconds),
+     unitmeasure.Measurement(value=45,
+                             unit=unitmeasure.UnitDuration.seconds), True),
+    (unitmeasure.Measurement(value=60, unit=unitmeasure.Unit("blah")),
+     unitmeasure.Measurement(value=60, unit=unitmeasure.Unit("blah")), True),
+])
+def test_ge(lhs, rhs, expected):
+    assert (lhs >= rhs) == expected
+
+
+def test_lt_non_equal_dimensions():
+    with pytest.raises(TypeError):
+        unitmeasure.Measurement(
+            value=60,
+            unit=unitmeasure.UnitDuration.seconds) < unitmeasure.Measurement(
+                value=1, unit=unitmeasure.Unit("blah"))
+
+
+def test_le_non_equal_dimensions():
+    with pytest.raises(TypeError):
+        unitmeasure.Measurement(
+            value=60,
+            unit=unitmeasure.UnitDuration.seconds) <= unitmeasure.Measurement(
+                value=1, unit=unitmeasure.Unit("blah"))
+
+
+def test_gt_non_equal_dimensions():
+    with pytest.raises(TypeError):
+        unitmeasure.Measurement(
+            value=60,
+            unit=unitmeasure.UnitDuration.seconds) > unitmeasure.Measurement(
+                value=1, unit=unitmeasure.Unit("blah"))
+
+
+def test_ge_non_equal_dimensions():
+    with pytest.raises(TypeError):
+        unitmeasure.Measurement(
+            value=60,
+            unit=unitmeasure.UnitDuration.seconds) >= unitmeasure.Measurement(
+                value=1, unit=unitmeasure.Unit("blah"))
+
+
 def test_converted_not_dimension():
     measure = unitmeasure.Measurement(value=60, unit=unitmeasure.Unit("blah"))
     with pytest.raises(TypeError):
