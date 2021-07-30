@@ -66,6 +66,62 @@ class Measurement(object):
     def __ne__(self, other):
         return not self.__eq__(other)
 
+    def __lt__(self, other):
+        if self.unit == other.unit:
+            return self.value < other.value
+        if isinstance(self.unit, dimension.Dimension) and isinstance(
+                other.unit, dimension.Dimension):
+            if self.unit.baseUnit() == other.unit.baseUnit():
+                lhs_value_in_base = self.unit.converter.baseUnitValue(
+                    self.value)
+                rhs_value_in_base = other.unit.converter.baseUnitValue(
+                    other.value)
+                return lhs_value_in_base < rhs_value_in_base
+        raise TypeError(
+            "Attempt to compare measurements with non-equal dimensions")
+
+    def __le__(self, other):
+        if self.unit == other.unit:
+            return self.value <= other.value
+        if isinstance(self.unit, dimension.Dimension) and isinstance(
+                other.unit, dimension.Dimension):
+            if self.unit.baseUnit() == other.unit.baseUnit():
+                lhs_value_in_base = self.unit.converter.baseUnitValue(
+                    self.value)
+                rhs_value_in_base = other.unit.converter.baseUnitValue(
+                    other.value)
+                return lhs_value_in_base <= rhs_value_in_base
+        raise TypeError(
+            "Attempt to compare measurements with non-equal dimensions")
+
+    def __gt__(self, other):
+        if self.unit == other.unit:
+            return self.value > other.value
+        if isinstance(self.unit, dimension.Dimension) and isinstance(
+                other.unit, dimension.Dimension):
+            if self.unit.baseUnit() == other.unit.baseUnit():
+                lhs_value_in_base = self.unit.converter.baseUnitValue(
+                    self.value)
+                rhs_value_in_base = other.unit.converter.baseUnitValue(
+                    other.value)
+                return lhs_value_in_base > rhs_value_in_base
+        raise TypeError(
+            "Attempt to compare measurements with non-equal dimensions")
+
+    def __ge__(self, other):
+        if self.unit == other.unit:
+            return self.value >= other.value
+        if isinstance(self.unit, dimension.Dimension) and isinstance(
+                other.unit, dimension.Dimension):
+            if self.unit.baseUnit() == other.unit.baseUnit():
+                lhs_value_in_base = self.unit.converter.baseUnitValue(
+                    self.value)
+                rhs_value_in_base = other.unit.converter.baseUnitValue(
+                    other.value)
+                return lhs_value_in_base >= rhs_value_in_base
+        raise TypeError(
+            "Attempt to compare measurements with non-equal dimensions")
+
     def __repr__(self):
         return self.debugDescription
 
