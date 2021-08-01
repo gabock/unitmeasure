@@ -305,3 +305,47 @@ def test_mul_two_dimensions():
             value=10,
             unit=unitmeasure.UnitDuration.seconds) * unitmeasure.Measurement(
                 value=10, unit=unitmeasure.UnitDuration.seconds)
+
+
+def test_truediv():
+    assert unitmeasure.Measurement(
+        value=5,
+        unit=unitmeasure.UnitDuration.seconds) / 2 == unitmeasure.Measurement(
+            value=2.5, unit=unitmeasure.UnitDuration.seconds)
+
+
+def test_rtruediv():
+    assert 3 / unitmeasure.Measurement(
+        value=4,
+        unit=unitmeasure.UnitDuration.seconds) == unitmeasure.Measurement(
+            value=0.75, unit=unitmeasure.UnitDuration.seconds)
+
+
+def test_truediv_two_dimensions():
+    with pytest.raises(TypeError):
+        unitmeasure.Measurement(
+            value=10,
+            unit=unitmeasure.UnitDuration.seconds) / unitmeasure.Measurement(
+                value=10, unit=unitmeasure.UnitDuration.seconds)
+
+
+def test_floordiv():
+    assert unitmeasure.Measurement(
+        value=5,
+        unit=unitmeasure.UnitDuration.seconds) // 2 == unitmeasure.Measurement(
+            value=2, unit=unitmeasure.UnitDuration.seconds)
+
+
+def test_rfloordiv():
+    assert 3 // unitmeasure.Measurement(
+        value=4,
+        unit=unitmeasure.UnitDuration.seconds) == unitmeasure.Measurement(
+            value=0, unit=unitmeasure.UnitDuration.seconds)
+
+
+def test_floordiv_two_dimensions():
+    with pytest.raises(TypeError):
+        unitmeasure.Measurement(
+            value=10,
+            unit=unitmeasure.UnitDuration.seconds) // unitmeasure.Measurement(
+                value=10, unit=unitmeasure.UnitDuration.seconds)
