@@ -1,3 +1,5 @@
+import numbers
+
 from unitmeasure import dimension
 from unitmeasure.unit import Unit
 
@@ -90,6 +92,17 @@ class Measurement(object):
                 "cannot subtract value of type '{0}' to measurement".format(
                     type(other)))
 
+    def __mul__(self, other):
+        """Multiply a measurement by a scalar value"""
+        if not isinstance(other, numbers.Number):
+            raise TypeError(
+                "cannot multiply value of type '{0}' to measurement. value must be a number"
+                .format(type(other)))
+        return Measurement(self.value * other, self.unit)
+
+    def __rmul__(self, other):
+        """Multiply a scalar value by a measurement"""
+        return self.__mul__(other)
 
     def __eq__(self, other):
         if self.unit == other.unit:
