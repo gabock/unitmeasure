@@ -237,11 +237,14 @@ def test_add_scalar():
         m3 = unitmeasure.Measurement(value=10,
                                      unit=unitmeasure.UnitDuration.seconds) + 3
 
+
 def test_radd_scalar():
     # radd is only ever called if the operand on the left side does not support the addition.
     # so we should raise an error we aren't adding measurements together.
     with pytest.raises(TypeError):
-        m = 3 + unitmeasure.Measurement(value=10, unit=unitmeasure.UnitDuration.seconds)
+        m = 3 + unitmeasure.Measurement(value=10,
+                                        unit=unitmeasure.UnitDuration.seconds)
+
 
 def test_sub_same_units():
     m1 = unitmeasure.Measurement(value=1, unit=unitmeasure.UnitDuration.hours)
@@ -273,8 +276,32 @@ def test_sub_scalar():
         m3 = unitmeasure.Measurement(value=10,
                                      unit=unitmeasure.UnitDuration.seconds) - 3
 
+
 def test_rsub_scalar():
     # rsub is only ever called if the operand on the left side does not support the addition.
     # so we should raise an error we aren't adding measurements together.
     with pytest.raises(TypeError):
-        m = 3 - unitmeasure.Measurement(value=10, unit=unitmeasure.UnitDuration.seconds)
+        m = 3 - unitmeasure.Measurement(value=10,
+                                        unit=unitmeasure.UnitDuration.seconds)
+
+
+def test_mul():
+    assert unitmeasure.Measurement(
+        value=10,
+        unit=unitmeasure.UnitDuration.seconds) * 3 == unitmeasure.Measurement(
+            value=30, unit=unitmeasure.UnitDuration.seconds)
+
+
+def test_rmul():
+    assert 3 * unitmeasure.Measurement(
+        value=10,
+        unit=unitmeasure.UnitDuration.seconds) == unitmeasure.Measurement(
+            value=30, unit=unitmeasure.UnitDuration.seconds)
+
+
+def test_mul_two_dimensions():
+    with pytest.raises(TypeError):
+        unitmeasure.Measurement(
+            value=10,
+            unit=unitmeasure.UnitDuration.seconds) * unitmeasure.Measurement(
+                value=10, unit=unitmeasure.UnitDuration.seconds)
