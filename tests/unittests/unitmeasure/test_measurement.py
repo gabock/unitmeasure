@@ -1,6 +1,7 @@
 import pytest
 
 import unitmeasure
+from unitmeasure.units.duration import UnitDuration
 
 
 def test_immutable():
@@ -84,6 +85,7 @@ def test_not_equal(lhs, rhs, expected):
 def test_lt(lhs, rhs, expected):
     assert (lhs < rhs) == expected
 
+
 @pytest.mark.parametrize("lhs, rhs, expected", [
     (unitmeasure.Measurement(value=45, unit=unitmeasure.UnitDuration.seconds),
      unitmeasure.Measurement(value=60,
@@ -101,7 +103,6 @@ def test_le(lhs, rhs, expected):
     assert (lhs <= rhs) == expected
 
 
-
 @pytest.mark.parametrize("lhs, rhs, expected", [
     (unitmeasure.Measurement(value=45, unit=unitmeasure.UnitDuration.seconds),
      unitmeasure.Measurement(value=60,
@@ -117,6 +118,7 @@ def test_le(lhs, rhs, expected):
 ])
 def test_gt(lhs, rhs, expected):
     assert (lhs > rhs) == expected
+
 
 @pytest.mark.parametrize("lhs, rhs, expected", [
     (unitmeasure.Measurement(value=45, unit=unitmeasure.UnitDuration.seconds),
@@ -203,3 +205,34 @@ def test_convert():
     measure.convert(unitmeasure.UnitDuration.minutes)
     assert measure == unitmeasure.Measurement(
         value=60, unit=unitmeasure.UnitDuration.minutes)
+
+
+def test_add_same_units():
+    m1 = unitmeasure.Measurement(value=1, unit=unitmeasure.UnitDuration.hours)
+    m2 = unitmeasure.Measurement(value=1, unit=unitmeasure.UnitDuration.hours)
+    m3 = m1 + m2
+    assert m3.value == 2
+    assert m3.unit == unitmeasure.UnitDuration.hours
+
+
+def test_add_same_dimension():
+    m1 = unitmeasure.Measurement(value=10,
+                                 unit=unitmeasure.UnitDuration.seconds)
+    m2 = unitmeasure.Measurement(value=1, unit=unitmeasure.UnitDuration.minutes)
+    m3 = m1 + m2
+    assert m3.value == 70
+    assert m3.unit == unitmeasure.UnitDuration.seconds
+
+
+def test_add_different_dimension():
+    m1 = unitmeasure.Measurement(value=10,
+                                 unit=unitmeasure.UnitDuration.seconds)
+    m2 = unitmeasure.Measurement(value=1, unit=unitmeasure.UnitLength.meters)
+    with pytest.raises(TypeError):
+        m3 = m1 + m2
+
+
+def test_add_scalar():
+    with pytest.raises(TypeError):
+        m3 = unitmeasure.Measurement(value=10,
+                                     unit=unitmeasure.UnitDuration.seconds) + 3
