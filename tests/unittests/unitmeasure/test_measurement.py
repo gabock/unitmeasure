@@ -242,3 +242,39 @@ def test_radd_scalar():
     # so we should raise an error we aren't adding measurements together.
     with pytest.raises(TypeError):
         m = 3 + unitmeasure.Measurement(value=10, unit=unitmeasure.UnitDuration.seconds)
+
+def test_sub_same_units():
+    m1 = unitmeasure.Measurement(value=1, unit=unitmeasure.UnitDuration.hours)
+    m2 = unitmeasure.Measurement(value=1, unit=unitmeasure.UnitDuration.hours)
+    m3 = m1 - m2
+    assert m3.value == 0
+    assert m3.unit == unitmeasure.UnitDuration.hours
+
+
+def test_sub_same_dimension():
+    m1 = unitmeasure.Measurement(value=10,
+                                 unit=unitmeasure.UnitDuration.seconds)
+    m2 = unitmeasure.Measurement(value=1, unit=unitmeasure.UnitDuration.minutes)
+    m3 = m1 - m2
+    assert m3.value == -50
+    assert m3.unit == unitmeasure.UnitDuration.seconds
+
+
+def test_sub_different_dimension():
+    m1 = unitmeasure.Measurement(value=10,
+                                 unit=unitmeasure.UnitDuration.seconds)
+    m2 = unitmeasure.Measurement(value=1, unit=unitmeasure.UnitLength.meters)
+    with pytest.raises(TypeError):
+        m3 = m1 - m2
+
+
+def test_sub_scalar():
+    with pytest.raises(TypeError):
+        m3 = unitmeasure.Measurement(value=10,
+                                     unit=unitmeasure.UnitDuration.seconds) - 3
+
+def test_rsub_scalar():
+    # rsub is only ever called if the operand on the left side does not support the addition.
+    # so we should raise an error we aren't adding measurements together.
+    with pytest.raises(TypeError):
+        m = 3 - unitmeasure.Measurement(value=10, unit=unitmeasure.UnitDuration.seconds)
