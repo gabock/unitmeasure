@@ -104,6 +104,38 @@ class Measurement(object):
         """Multiply a scalar value by a measurement"""
         return self.__mul__(other)
 
+    def __truediv__(self, other):
+        """Divide a measurement by a scalar value"""
+        if not isinstance(other, numbers.Number):
+            raise TypeError(
+                "cannot divide value of type '{0}' to measurement. value must be a number"
+                .format(type(other)))
+        return Measurement(self.value / other, self.unit)
+
+    def __rtruediv__(self, other):
+        """Divide a scalar value by a measurement"""
+        if not isinstance(other, numbers.Number):
+            raise TypeError(
+                "cannot divide value of type '{0}' to measurement. value must be a number"
+                .format(type(other)))
+        return Measurement(other / self.value, self.unit)
+
+    def __floordiv__(self, other):
+        """Divide a measurement by a scalar value"""
+        if not isinstance(other, numbers.Number):
+            raise TypeError(
+                "cannot divide value of type '{0}' to measurement. value must be a number"
+                .format(type(other)))
+        return Measurement(self.value // other, self.unit)
+
+    def __rfloordiv__(self, other):
+        """Divide a scalar value by a measurement"""
+        if not isinstance(other, numbers.Number):
+            raise TypeError(
+                "cannot divide value of type '{0}' to measurement. value must be a number"
+                .format(type(other)))
+        return Measurement(other // self.value, self.unit)
+
     def __eq__(self, other):
         if self.unit == other.unit:
             return self.value == other.value
