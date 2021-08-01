@@ -70,6 +70,27 @@ class Measurement(object):
                 "cannot add value of type '{0}' to measurement".format(
                     type(other)))
 
+    def __sub__(self, other):
+        try:
+            if self.unit == other.unit:
+                return Measurement(self.value - other.value, self.unit)
+            if isinstance(self.unit, dimension.Dimension) and isinstance(
+                    other.unit, dimension.Dimension):
+                if self.unit.baseUnit() == other.unit.baseUnit():
+                    value_in_base = self.unit.converter.baseUnitValue(
+                        self.value)
+                    other_value_in_base = other.unit.converter.baseUnitValue(
+                        other.value)
+                    return Measurement(value_in_base - other_value_in_base,
+                                       self.unit.baseUnit())
+            raise TypeError(
+                "Attempt to subtract measurements with non-equal dimensions")
+        except AttributeError:
+            raise TypeError(
+                "cannot subtract value of type '{0}' to measurement".format(
+                    type(other)))
+
+
     def __eq__(self, other):
         if self.unit == other.unit:
             return self.value == other.value
