@@ -209,7 +209,7 @@ class Measurement(object):
             "Attempt to compare measurements with non-equal dimensions")
 
     def __repr__(self):
-        return self.debugDescription
+        return "{0}<{1}>".format(self.__class__.__name__, self.unit.__class__.__name__)
 
     def __str__(self):
-        return self.__repr__()
+        return self.description

@@ -25,6 +25,17 @@ def test_debug_description():
     assert measure.debugDescription == "60 s"
 
 
+def test_to_str():
+    measure = unitmeasure.Measurement(value=60,
+                                      unit=unitmeasure.UnitDuration.seconds)
+    assert str(measure) == "60 s"
+
+def test_repr():
+    measure = unitmeasure.Measurement(value=60,
+                                      unit=unitmeasure.UnitDuration.seconds)
+    assert measure.__repr__() == "Measurement<UnitDuration>"
+
+
 @pytest.mark.parametrize("lhs, rhs, expected", [
     (unitmeasure.Measurement(value=60, unit=unitmeasure.UnitDuration.seconds),
      unitmeasure.Measurement(value=60,
