@@ -136,6 +136,13 @@ class Measurement(object):
                 .format(type(other)))
         return Measurement(other // self.value, self.unit)
 
+    def __hash__(self):
+        # WARNING: This needs to be kept in sync with __eq__
+        # or hashing will break
+        if isinstance(self.unit, dimension.Dimension):
+            return hash((self.unit.converter.baseUnitValue(self.value), self.unit.baseUnit().symbol))
+        return hash((self.value, self.unit.symbol))
+
     def __eq__(self, other):
         if self.unit == other.unit:
             return self.value == other.value

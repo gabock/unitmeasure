@@ -387,3 +387,52 @@ def test_floordiv_two_dimensions():
             value=10,
             unit=unitmeasure.UnitDuration.seconds) // unitmeasure.Measurement(
                 value=10, unit=unitmeasure.UnitDuration.seconds)
+
+def test_hash_simple():
+    m = unitmeasure.Measurement(value=3, unit=unitmeasure.UnitDuration.seconds)
+    d = {m: "hello there"}
+    assert m is m
+    assert m == m
+    assert d[m] == "hello there"
+
+def test_hash_new_obj_lookup():
+    m = unitmeasure.Measurement(value=3, unit=unitmeasure.UnitDuration.seconds)
+    m2 = unitmeasure.Measurement(value=3, unit=unitmeasure.UnitDuration.seconds)
+    d = {m: "hello there"}
+    assert m is not m2
+    assert m == m2
+    assert d[m2] == "hello there"
+
+def test_hash_same_if_converted():
+    m = unitmeasure.Measurement(value=60, unit=unitmeasure.UnitDuration.seconds)
+    m2 = unitmeasure.Measurement(value=1, unit=unitmeasure.UnitDuration.minutes)
+    d = {m: "hello there"}
+    assert m == m2
+    assert d[m2] == "hello there"
+
+def test_hash_keyerror_different_values():
+    m = unitmeasure.Measurement(value=3, unit=unitmeasure.UnitDuration.seconds)
+    m2 = unitmeasure.Measurement(value=6, unit=unitmeasure.UnitDuration.seconds)
+    d = {m: "hello there"}
+    assert m is not m2
+    assert m != m2
+    with pytest.raises(KeyError):
+        d[m2]
+
+def test_hash_keyerror_different_unit():
+    m = unitmeasure.Measurement(value=3, unit=unitmeasure.UnitDuration.seconds)
+    m2 = unitmeasure.Measurement(value=3, unit=unitmeasure.UnitDuration.minutes)
+    d = {m: "hello there"}
+    assert m is not m2
+    assert m != m2
+    with pytest.raises(KeyError):
+        d[m2]
+
+def test_hash_keyerror_different_dim():
+    m = unitmeasure.Measurement(value=3, unit=unitmeasure.UnitDuration.seconds)
+    m2 = unitmeasure.Measurement(value=3, unit=unitmeasure.UnitLength.feet)
+    d = {m: "hello there"}
+    assert m is not m2
+    assert m != m2
+    with pytest.raises(KeyError):
+        d[m2]
