@@ -1,3 +1,5 @@
+import collections
+import json
 import numbers
 
 from unitmeasure import dimension
@@ -220,3 +222,9 @@ class Measurement(object):
 
     def __str__(self):
         return self.description
+
+    def to_json(self):
+        data = collections.OrderedDict()
+        data.update(json.loads(self.unit.to_json()))
+        data.update({ "value": self.value })
+        return json.dumps(data, indent=4, default=float)
