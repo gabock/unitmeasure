@@ -21,7 +21,7 @@ class UnitTemperature(dimension.Dimension):
         celsius = 273.15
         fahrenheit = 255.37222222222427
 
-    def __init__(self, symbol, coefficient, constant):
+    def __init__(self, symbol, coefficient, constant, *args, **kwargs):
         super().__init__(
             symbol,
             converters.UnitConverterLinear(coefficient, constant=constant))

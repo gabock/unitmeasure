@@ -54,7 +54,7 @@ class UnitLength(dimension.Dimension):
         astronomicalUnits = 1.496e+11
         parsecs = 3.086e+16
 
-    def __init__(self, symbol, coefficient):
+    def __init__(self, symbol, coefficient, *args, **kwargs):
         super().__init__(symbol, converters.UnitConverterLinear(coefficient))
 
     @classproperty

@@ -20,7 +20,7 @@ class UnitElectricPotentialDifference(dimension.Dimension):
         millivolts = 1e-3
         microvolts = 1e-6
 
-    def __init__(self, symbol, coefficient):
+    def __init__(self, symbol, coefficient, *args, **kwargs):
         super().__init__(symbol, converters.UnitConverterLinear(coefficient))
 
     @classproperty

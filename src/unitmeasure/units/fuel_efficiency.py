@@ -16,7 +16,7 @@ class UnitFuelEfficiency(dimension.Dimension):
         milesPerImperialGallon = 282.481
         milesPerGallon = 235.215
 
-    def __init__(self, symbol, reciprocal):
+    def __init__(self, symbol, reciprocal, *args, **kwargs):
         super().__init__(symbol, converters.UnitConverterReciprocal(reciprocal))
 
     @classproperty

@@ -142,7 +142,8 @@ class Measurement(object):
         # WARNING: This needs to be kept in sync with __eq__
         # or hashing will break
         if isinstance(self.unit, dimension.Dimension):
-            return hash((self.unit.converter.baseUnitValue(self.value), self.unit.baseUnit().symbol))
+            return hash((self.unit.converter.baseUnitValue(self.value),
+                         self.unit.baseUnit().symbol))
         return hash((self.value, self.unit.symbol))
 
     def __eq__(self, other):
@@ -218,7 +219,8 @@ class Measurement(object):
             "Attempt to compare measurements with non-equal dimensions")
 
     def __repr__(self):
-        return "{0}<{1}>".format(self.__class__.__name__, self.unit.__class__.__name__)
+        return "{0}<{1}>".format(self.__class__.__name__,
+                                 self.unit.__class__.__name__)
 
     def __str__(self):
         return self.description
@@ -226,5 +228,5 @@ class Measurement(object):
     def to_json(self):
         data = collections.OrderedDict()
         data.update(json.loads(self.unit.to_json()))
-        data.update({ "value": self.value })
+        data.update({"value": self.value})
         return json.dumps(data, indent=4, default=float)

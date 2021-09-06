@@ -20,7 +20,7 @@ class UnitEnergy(dimension.Dimension):
         calories = 4.184
         kilowattHours = 3600000.0
 
-    def __init__(self, symbol, coefficient):
+    def __init__(self, symbol, coefficient, *args, **kwargs):
         super().__init__(symbol, converters.UnitConverterLinear(coefficient))
 
     @classproperty

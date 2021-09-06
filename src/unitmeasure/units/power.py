@@ -32,7 +32,7 @@ class UnitPower(dimension.Dimension):
         femtowatts = 1e-15
         horsepower = 745.7
 
-    def __init__(self, symbol, coefficient):
+    def __init__(self, symbol, coefficient, *args, **kwargs):
         super().__init__(symbol, converters.UnitConverterLinear(coefficient))
 
     @classproperty
