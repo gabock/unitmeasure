@@ -22,7 +22,7 @@ class UnitElectricCharge(dimension.Dimension):
         milliampereHours = 3.6
         microampereHours = 0.0036
 
-    def __init__(self, symbol, coefficient):
+    def __init__(self, symbol, coefficient, *args, **kwargs):
         super().__init__(symbol, converters.UnitConverterLinear(coefficient))
 
     @classproperty

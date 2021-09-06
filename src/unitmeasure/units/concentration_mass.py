@@ -16,7 +16,7 @@ class UnitConcentrationMass(dimension.Dimension):
         milligramsPerDeciliter = 0.01
         millimolesPerLiter = 18.0
 
-    def __init__(self, symbol, coefficient):
+    def __init__(self, symbol, coefficient, *args, **kwargs):
         super().__init__(symbol, converters.UnitConverterLinear(coefficient))
 
     @classproperty

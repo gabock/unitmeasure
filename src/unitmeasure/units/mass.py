@@ -42,7 +42,7 @@ class UnitMass(dimension.Dimension):
         ouncesTroy = 0.03110348
         slugs = 14.5939
 
-    def __init__(self, symbol, coefficient):
+    def __init__(self, symbol, coefficient, *args, **kwargs):
         super().__init__(symbol, converters.UnitConverterLinear(coefficient))
 
     @classproperty

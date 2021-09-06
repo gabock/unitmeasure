@@ -24,7 +24,7 @@ class UnitAngle(dimension.Dimension):
         gradians = 0.9
         revolutions = 360.0
 
-    def __init__(self, symbol, coefficient):
+    def __init__(self, symbol, coefficient, *args, **kwargs):
         super().__init__(symbol, converters.UnitConverterLinear(coefficient))
 
     @classproperty

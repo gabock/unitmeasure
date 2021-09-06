@@ -30,6 +30,7 @@ def test_to_str():
                                       unit=unitmeasure.UnitDuration.seconds)
     assert str(measure) == "60 s"
 
+
 def test_repr():
     measure = unitmeasure.Measurement(value=60,
                                       unit=unitmeasure.UnitDuration.seconds)
@@ -248,8 +249,9 @@ def test_add_scalar():
         m3 = unitmeasure.Measurement(value=10,
                                      unit=unitmeasure.UnitDuration.seconds) + 3
 
+
 def test_iadd():
-    m  = unitmeasure.Measurement(value=10, unit=unitmeasure.UnitDuration.seconds)
+    m = unitmeasure.Measurement(value=10, unit=unitmeasure.UnitDuration.seconds)
     m += unitmeasure.Measurement(value=1, unit=unitmeasure.UnitDuration.minutes)
     assert m.value == 70
     assert m.unit == unitmeasure.UnitDuration.seconds
@@ -279,9 +281,9 @@ def test_sub_same_dimension():
     assert m3.value == -50
     assert m3.unit == unitmeasure.UnitDuration.seconds
 
+
 def test_isub():
-    m = unitmeasure.Measurement(value=10,
-                                 unit=unitmeasure.UnitDuration.seconds)
+    m = unitmeasure.Measurement(value=10, unit=unitmeasure.UnitDuration.seconds)
     m -= unitmeasure.Measurement(value=1, unit=unitmeasure.UnitDuration.minutes)
     assert m.value == -50
     assert m.unit == unitmeasure.UnitDuration.seconds
@@ -315,10 +317,12 @@ def test_mul():
         unit=unitmeasure.UnitDuration.seconds) * 3 == unitmeasure.Measurement(
             value=30, unit=unitmeasure.UnitDuration.seconds)
 
+
 def test_imul():
     m = unitmeasure.Measurement(value=10, unit=unitmeasure.UnitDuration.seconds)
     m *= 3
-    assert m == unitmeasure.Measurement(value=30, unit=unitmeasure.UnitDuration.seconds)
+    assert m == unitmeasure.Measurement(value=30,
+                                        unit=unitmeasure.UnitDuration.seconds)
 
 
 def test_rmul():
@@ -342,10 +346,13 @@ def test_truediv():
         unit=unitmeasure.UnitDuration.seconds) / 2 == unitmeasure.Measurement(
             value=2.5, unit=unitmeasure.UnitDuration.seconds)
 
+
 def test_itruediv():
     m = unitmeasure.Measurement(value=5, unit=unitmeasure.UnitDuration.seconds)
     m /= 2
-    assert m == unitmeasure.Measurement(value=2.5, unit=unitmeasure.UnitDuration.seconds)
+    assert m == unitmeasure.Measurement(value=2.5,
+                                        unit=unitmeasure.UnitDuration.seconds)
+
 
 def test_rtruediv():
     assert 3 / unitmeasure.Measurement(
@@ -375,10 +382,12 @@ def test_rfloordiv():
         unit=unitmeasure.UnitDuration.seconds) == unitmeasure.Measurement(
             value=0, unit=unitmeasure.UnitDuration.seconds)
 
+
 def test_ifloordiv():
     m = unitmeasure.Measurement(value=5, unit=unitmeasure.UnitDuration.seconds)
     m //= 2
-    assert m == unitmeasure.Measurement(value=2, unit=unitmeasure.UnitDuration.seconds)
+    assert m == unitmeasure.Measurement(value=2,
+                                        unit=unitmeasure.UnitDuration.seconds)
 
 
 def test_floordiv_two_dimensions():
@@ -388,12 +397,14 @@ def test_floordiv_two_dimensions():
             unit=unitmeasure.UnitDuration.seconds) // unitmeasure.Measurement(
                 value=10, unit=unitmeasure.UnitDuration.seconds)
 
+
 def test_hash_simple():
     m = unitmeasure.Measurement(value=3, unit=unitmeasure.UnitDuration.seconds)
     d = {m: "hello there"}
     assert m is m
     assert m == m
     assert d[m] == "hello there"
+
 
 def test_hash_new_obj_lookup():
     m = unitmeasure.Measurement(value=3, unit=unitmeasure.UnitDuration.seconds)
@@ -403,12 +414,14 @@ def test_hash_new_obj_lookup():
     assert m == m2
     assert d[m2] == "hello there"
 
+
 def test_hash_same_if_converted():
     m = unitmeasure.Measurement(value=60, unit=unitmeasure.UnitDuration.seconds)
     m2 = unitmeasure.Measurement(value=1, unit=unitmeasure.UnitDuration.minutes)
     d = {m: "hello there"}
     assert m == m2
     assert d[m2] == "hello there"
+
 
 def test_hash_keyerror_different_values():
     m = unitmeasure.Measurement(value=3, unit=unitmeasure.UnitDuration.seconds)
@@ -419,6 +432,7 @@ def test_hash_keyerror_different_values():
     with pytest.raises(KeyError):
         d[m2]
 
+
 def test_hash_keyerror_different_unit():
     m = unitmeasure.Measurement(value=3, unit=unitmeasure.UnitDuration.seconds)
     m2 = unitmeasure.Measurement(value=3, unit=unitmeasure.UnitDuration.minutes)
@@ -427,6 +441,7 @@ def test_hash_keyerror_different_unit():
     assert m != m2
     with pytest.raises(KeyError):
         d[m2]
+
 
 def test_hash_keyerror_different_dim():
     m = unitmeasure.Measurement(value=3, unit=unitmeasure.UnitDuration.seconds)

@@ -72,7 +72,7 @@ class UnitVolume(dimension.Dimension):
         imperialGallons = 4.54609
         metricCups = 0.25
 
-    def __init__(self, symbol, coefficient):
+    def __init__(self, symbol, coefficient, *args, **kwargs):
         super().__init__(symbol, converters.UnitConverterLinear(coefficient))
 
     @classproperty

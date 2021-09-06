@@ -38,7 +38,7 @@ class UnitArea(dimension.Dimension):
         ares = 100.0
         hectares = 10000.0
 
-    def __init__(self, symbol, coefficient):
+    def __init__(self, symbol, coefficient, *args, **kwargs):
         super().__init__(symbol, converters.UnitConverterLinear(coefficient))
 
     @classproperty

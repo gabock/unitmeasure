@@ -16,7 +16,7 @@ class UnitDuration(dimension.Dimension):
         minutes = 60.0
         hours = 3600.0
 
-    def __init__(self, symbol, coefficient):
+    def __init__(self, symbol, coefficient, *args, **kwargs):
         super().__init__(symbol, converters.UnitConverterLinear(coefficient))
 
     @classproperty

@@ -12,7 +12,7 @@ class UnitDispersion(dimension.Dimension):
     class Coefficient(object):
         partsPerMillion = 1.0
 
-    def __init__(self, symbol, coefficient):
+    def __init__(self, symbol, coefficient, *args, **kwargs):
         super().__init__(symbol, converters.UnitConverterLinear(coefficient))
 
     @classproperty

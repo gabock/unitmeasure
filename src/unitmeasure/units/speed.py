@@ -18,7 +18,7 @@ class UnitSpeed(dimension.Dimension):
         milesPerHour = 0.44704
         knots = 0.514444
 
-    def __init__(self, symbol, coefficient):
+    def __init__(self, symbol, coefficient, *args, **kwargs):
         super().__init__(symbol, converters.UnitConverterLinear(coefficient))
 
     @classproperty

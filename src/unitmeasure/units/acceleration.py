@@ -14,7 +14,7 @@ class UnitAcceleration(dimension.Dimension):
         metersPerSecondSquared = 1.0
         gravity = 9.81
 
-    def __init__(self, symbol, coefficient):
+    def __init__(self, symbol, coefficient, *args, **kwargs):
         super().__init__(symbol, converters.UnitConverterLinear(coefficient))
 
     @classproperty

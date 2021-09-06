@@ -26,7 +26,7 @@ class UnitFrequency(dimension.Dimension):
         microhertz = 1e-6
         nanohertz = 1e-9
 
-    def __init__(self, symbol, coefficient):
+    def __init__(self, symbol, coefficient, *args, **kwargs):
         super().__init__(symbol, converters.UnitConverterLinear(coefficient))
 
     @classproperty

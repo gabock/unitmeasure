@@ -30,7 +30,7 @@ class UnitPressure(dimension.Dimension):
         millimetersOfMercury = 133.322
         poundsForcePerSquareInch = 6894.76
 
-    def __init__(self, symbol, coefficient):
+    def __init__(self, symbol, coefficient, *args, **kwargs):
         super().__init__(symbol, converters.UnitConverterLinear(coefficient))
 
     @classproperty
