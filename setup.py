@@ -4,7 +4,7 @@ import setuptools
 
 setuptools.setup(
     name="unitmeasure",
-    version="0.1.0",
+    version="1.0.0",
     author="Greg Bock",
     description="Python units and measurements",
     url="https://github.com/gabock/unitmeasure",
